@@ -1,0 +1,42 @@
+language: perl
+
+perl:
+  - "5.8"
+  - "5.10"
+  - "5.12"
+  - "5.14"
+  - "5.16"
+  - "5.18"
+  - "5.18-shrplib"
+  - "5.20"
+  - "5.20-shrplib"
+  - "5.22"
+  - "5.22-shrplib"
+  - "5.24"
+  - "5.24-shrplib"
+  - "5.26"
+
+matrix:
+  include:
+    - perl: system_precise
+      dist: precise
+      addons: &addons
+        apt:
+          packages:
+            - perl
+            - cpanminus
+    - perl: system_trusty
+      dist: trusty
+      addons:
+        <<: *addons
+
+before_install:
+  - if [[ $TRAVIS_PERL_VERSION =~ ^system ]]; then export PERL5LIB=$HOME/perl5/lib/perl5; fi
+
+install:
+  - cpanm --quiet --notest --skip-satisfied --installdeps --with-configure --with-develop --with-recommends --with-suggests .
+
+script:
+  - perl Makefile.PL
+  - make
+  - make test TEST_VERBOSE=1

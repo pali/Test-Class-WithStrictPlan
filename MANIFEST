@@ -1,0 +1,9 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+lib/Test/Class/WithStrictPlan.pm
+t/Test-Class-WithStrictPlan.t
+t/less.plx
+t/more.plx
+t/exact.plx
