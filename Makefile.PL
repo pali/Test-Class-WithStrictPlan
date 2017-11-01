@@ -9,6 +9,7 @@ WriteMakefile(
 	MIN_PERL_VERSION => '5.6.0',
 
 	PREREQ_PM => {
+		'parent'                 => '0',
 		'strict'                 => '0',
 		'warnings'               => '0',
 		'Attribute::Handlers'    => '0',
