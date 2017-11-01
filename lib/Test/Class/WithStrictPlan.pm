@@ -36,6 +36,8 @@ Test::Class::WithStrictPlan - Test::Class with exact strict plan
   package Example::Test;
   use parent 'Test::Class::WithStrictPlan';
 
+  use Test::More;
+
   sub test1 : Test(2) {
     is(10 + 20, 30, 'addition works');
     is(20 + 10, 30, 'both ways');
