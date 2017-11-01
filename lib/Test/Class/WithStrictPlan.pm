@@ -29,7 +29,7 @@ __END__
 
 =head1 NAME
 
-Test::Class::WithStrictPlan - Test::Class with exact strict plan
+Test::Class::WithStrictPlan - Test::Class with exact and strict plan
 
 =head1 SYNOPSIS
 
@@ -48,15 +48,15 @@ Test::Class::WithStrictPlan - Test::Class with exact strict plan
 =head1 DESCRIPTION
 
 I<Test::Class::WithStrictPlan> is an extension of the
-L<I<Test::Class>|Test::Class> module. It has exactly same API, methods
+L<I<Test::Class>|Test::Class> module. It has exactly the same API, methods
 and behavior with just one difference in what the plan number specified
 in L<C<Test>|Test::Class/1) Test methods> attribute means. In
 L<I<Test::Class>|Test::Class> it means the maximal number of tests for
-a correspondent method. And in I<Test::Class::WithStrictPlan> it means
-the strictly exact number of tests (not more, not less).
+a correspondent method; in I<Test::Class::WithStrictPlan> it means
+strictly the exact number of tests (not more, not less).
 
-The best demonstration is on the following example which uses
-L<I<Test::Class>|Test::Class> but contains B<incorrect pattern> in the
+The following example demonstrates the difference the best: it uses
+L<I<Test::Class>|Test::Class> but contains an B<incorrect pattern> in the
 test code.
 
   package Example1;
@@ -71,7 +71,7 @@ test code.
 
   __PACKAGE__->runtests;
 
-Plan has specified 3 tests, but only 2 are defined. When this test
+The plan specifies 3 tests, but only 2 are defined. When this test
 is run it passes without any error.
 
   1..3
@@ -80,23 +80,23 @@ is run it passes without any error.
   ok 3 # skip 1
 
 Why? Because the plan means the maximal number of tests which can be
-run and number of tests which were run is not more then 3.
+run and the number of tests which were run is not more than 3.
 
-And if you are interested what C<1> means after the C<# skip> output
-string then it is the return value of C<test> method. When less number
-of tests is run as specified in L<I<Test::Class>|Test::Class> then
-return value of the test method is used as skip reason. In this case
-it is return value of the last statement (return value of the C<is>
-call). To provide no skip reason it is needed to return undef from the
+Are you interested in what the C<1> means after the C<# skip> output
+string? It is the return value of the C<test1> method. When a lower number
+of tests is run than specified in L<I<Test::Class>|Test::Class> then
+the return value of the test method is used as the reason to skip the remaining tests. In this case
+the value of the last statement is returned (the return value of the C<is>
+call). To provide no skip reason it is needed to return C<undef> from the
 test method.
 
-In most cases it is needed to specify exact strict number of tests
-and not maximal number of tests. Also to prevent problems as in above
+In most cases one wants to specify the exact number of tests
+instead of the maximal number. It also prevents problems like the one in the above
 B<incorrect> example. And for this purposes there is
-I<Test::Class::WithStrictPlan> module in which plan means exact
+the I<Test::Class::WithStrictPlan> module in which a plan means the exact
 number of specified tests.
 
-See above module rewritten to use I<Test::Class::WithStrictPlan>.
+See the above module rewritten to use I<Test::Class::WithStrictPlan>.
 
   package Example2;
   use parent 'Test::Class::WithStrictPlan';
@@ -110,7 +110,7 @@ See above module rewritten to use I<Test::Class::WithStrictPlan>.
 
   __PACKAGE__->runtests;
 
-When it is run then it fails and show error as people would expect.
+When this is run then it fails and shows an error as one would expect.
 
   1..3
   ok 1 - test1
@@ -121,7 +121,7 @@ When it is run then it fails and show error as people would expect.
   #   (in Example2->test1)
   # Looks like you failed 1 test of 3.
 
-Basically this module is just syntactic sugar for
+Basically this module is just a syntactic sugar for
 L<returning early from I<Test::Class>|Test::Class/RETURNING EARLY>.
 
 =head1 SEE ALSO
