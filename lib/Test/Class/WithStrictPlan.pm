@@ -48,16 +48,16 @@ Test::Class::WithStrictPlan - Test::Class with exact and strict plan
 =head1 DESCRIPTION
 
 I<Test::Class::WithStrictPlan> is an extension of the
-L<I<Test::Class>|Test::Class> module. It has exactly the same API, methods
-and behavior with just one difference in what the plan number specified
-in L<C<Test>|Test::Class/1) Test methods> attribute means. In
-L<I<Test::Class>|Test::Class> it means the maximal number of tests for
-a correspondent method; in I<Test::Class::WithStrictPlan> it means
+L<I<Test::Class>|Test::Class> module. It has exactly the same API,
+methods and behavior with just one difference in what the plan number
+specified in L<C<Test>|Test::Class/1) Test methods> attribute means.
+In L<I<Test::Class>|Test::Class> it means the maximal number of tests
+for a correspondent method; in I<Test::Class::WithStrictPlan> it means
 strictly the exact number of tests (not more, not less).
 
 The following example demonstrates the difference the best: it uses
-L<I<Test::Class>|Test::Class> but contains an B<incorrect pattern> in the
-test code.
+L<I<Test::Class>|Test::Class> but contains an B<incorrect pattern> in
+the test code.
 
   package Example1;
   use parent 'Test::Class';
@@ -83,17 +83,17 @@ Why? Because the plan means the maximal number of tests which can be
 run and the number of tests which were run is not more than 3.
 
 Are you interested in what the C<1> means after the C<# skip> output
-string? It is the return value of the C<test1> method. When a lower number
-of tests is run than specified in L<I<Test::Class>|Test::Class> then
-the return value of the test method is used as the reason to skip the remaining tests. In this case
-the value of the last statement is returned (the return value of the C<is>
-call). To provide no skip reason it is needed to return C<undef> from the
-test method.
+string? It is the return value of the C<test1> method. When a lower
+number of tests is run than specified in L<I<Test::Class>|Test::Class>
+then the return value of the test method is used as the reason to skip
+the remaining tests. In this case the value of the last statement is
+returned (the return value of the C<is> call). To provide no skip
+reason it is needed to return C<undef> from the test method.
 
-In most cases one wants to specify the exact number of tests
-instead of the maximal number. It also prevents problems like the one in the above
-B<incorrect> example. And for this purposes there is
-the I<Test::Class::WithStrictPlan> module in which a plan means the exact
+In most cases one wants to specify the exact number of tests instead
+of the maximal number. It also prevents problems like the one in the
+above B<incorrect> example. And for this purposes there is the
+I<Test::Class::WithStrictPlan> module in which a plan means the exact
 number of specified tests.
 
 See the above module rewritten to use I<Test::Class::WithStrictPlan>.
