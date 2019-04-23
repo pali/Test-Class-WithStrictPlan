@@ -15,6 +15,8 @@ perl:
   - "5.24"
   - "5.24-shrplib"
   - "5.26"
+  - "5.26-shrplib"
+  - "5.28"
 
 matrix:
   include:
@@ -29,11 +31,17 @@ matrix:
       dist: trusty
       addons:
         <<: *addons
+    - perl: system_xenial
+      dist: xenial
+      addons:
+        <<: *addons
 
 before_install:
   - if [[ $TRAVIS_PERL_VERSION =~ ^system ]]; then export PERL5LIB=$HOME/perl5/lib/perl5; fi
 
 install:
+  - perl '-MExtUtils::MakeMaker 6.58' -e '' || cpanm --quiet --notest ExtUtils::MakeMaker@6.58
+  - perl '-MCPAN::Meta 2.112580' -e '' || cpanm --quiet --notest CPAN::Meta@2.112580
   - cpanm --quiet --notest --skip-satisfied --installdeps --with-configure --with-develop --with-recommends --with-suggests .
 
 script:
