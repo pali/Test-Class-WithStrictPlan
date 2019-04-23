@@ -1,4 +1,3 @@
-#!/usr/bin/perl
 use ExtUtils::MakeMaker;
 WriteMakefile(
 	NAME             => 'Test::Class::WithStrictPlan',
