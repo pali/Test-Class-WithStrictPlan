@@ -9,20 +9,9 @@ use warnings;
 our $VERSION = '0.1';
 
 use parent 'Test::Class';
-BEGIN { Test::Class->VERSION('0.37') }
+BEGIN { Test::Class->VERSION('0.51') }
 sub fail_if_returned_early { 1 }
-
-use Attribute::Handlers;
-
-sub Test : ATTR(CODE, RAWDATA) {
-	my ($class, $symbol, $code_ref, $attr, $args) = @_;
-	no warnings 'redefine';
-	*{$symbol} = sub {
-		$code_ref->(@_);
-		return;
-	};
-	Test::Class::Test($class, $symbol, $code_ref, $attr, $args);
-}
+sub fail_if_returned_late { 1 }
 
 1;
 __END__

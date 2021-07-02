@@ -15,7 +15,7 @@ WriteMakefile(
 		'strict'                 => '0',
 		'warnings'               => '0',
 		'Attribute::Handlers'    => '0',
-		'Test::Class'            => '0.37',
+		'Test::Class'            => '0.51',
 	},
 	TEST_REQUIRES => {
 		'Test::More'             => '0',
