@@ -6,7 +6,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 use parent 'Test::Class';
 BEGIN { Test::Class->VERSION('0.51') }

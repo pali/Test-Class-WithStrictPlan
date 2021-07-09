@@ -7,3 +7,4 @@ t/Test-Class-WithStrictPlan.t
 t/less.plx
 t/more.plx
 t/exact.plx
+t/noplan.plx
